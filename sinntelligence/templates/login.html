@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <form class="form-login" method="POST" action="/login">
+        <h2 class="form-login-heading">Login</h2>
+        {% if message %}
+        <div class="success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ message }}
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ error }}
+        </div>
+        {% endif %}
+
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember_me) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <br>
+        <label>No account? <a href="register">Register here</a>.</label>
+      </form>
+    </div>
+{% endblock %}

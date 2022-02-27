@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Upload{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+{% endblock %}
+{% block content %}
+  <form method="POST" enctype=multipart/form-data>
+    <input type="file" name="file" multiple>
+    <p>Drag your files here or click in this area (try not to exceed 3 Mb).</p>
+    <button type="submit">Upload</button>
+  </form>
+  <script src={{ url_for('static', filename='js/upload.js') }} type='text/javascript'></script>
+{% endblock %}
